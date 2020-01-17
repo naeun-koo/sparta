@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	
+	<!-- Optional JavaScript -->
+	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+	<!-- Google fonts -->
+	<link href="https://fonts.googleapis.com/css?family=Nanum+Myeongjo&display=swap" rel="stylesheet">
+
+	<title>나혼자산다 2020 달력 판매</title>
+	<style type="text/css">
+		.image_area {
+			/*width: 520px;*/
+			background-color: lightgrey;
+			margin: auto;
+			border-style: solid;
+			border-width: 10px;
+			border-color: lightgrey;
+			text-align: center;
+		}
+
+		.all_area {
+			width: 50%;
+			margin:auto;
+			font-family: 'Nanum Myeongjo', serif;
+		}
+	</style>
+
+	<script type="text/javascript">
+		var rowNum = 0;	
+		function validCheck() {
+			let name = $('#inputName').val();
+			let count = $('#inputCount').val();
+			let address = $('#inputAddress').val();
+			let phonenumber = $('#inputPhonenumber').val();
+			let orderInfo = []
+
+			// valid check
+			if(name == '') {
+				alert('주문자 성함을 입력해주세요!');
+				$('#inputName').focus();
+			} else if(count == '개수를 선택하세요') {
+				alert('주문 수량을 입력해주세요!');
+				$('#inputCount').focus();
+			} else if(address == '') {
+				alert('주소를 입력해주세요!');
+				$('#inputAddress').focus();
+			} else if(phonenumber == '') {
+				alert('연락처를 입력해주세요!');
+				$('#inputPhonenumber').focus();
+			} else if(isCelluar(phonenumber) == false) {
+				alert('연락처를 정확히 입력해주세요! (ex. 010-xxxx-xxxx)');
+			} else {
+				orderInfo = [name, count, address, phonenumber];
+				addOrderList(orderInfo);
+			}
+		}
+		
+		function isCelluar(asValue) {
+			var regExp = /^010-(?:\d{3}|\d{4})-\d{4}$/;
+			return regExp.test(asValue); // 형식에 맞는 경우 true 리턴(출처:https://suyou.tistory.com/150)
+		}
+
+		function addOrderList(orderInfo) {
+			rowNum++;
+			let tempHtml = '<tr>\
+								<th scope="row">'+rowNum+'</th>\
+								<td>'+orderInfo[0]+'</td>\
+								<td>'+orderInfo[1]+'</td>\
+								<td>'+orderInfo[2]+'</td>\
+								<td>'+orderInfo[3]+'</td>\
+							</tr>';
+			$('#orderList').append(tempHtml);
+		}
+
+	</script>
+
+</head>
+<body>
+
+	<div class="all_area">
+		<br>
+		<div class="image_area">
+			<img src="https://img9.yna.co.kr/etc/inner/KR/2019/12/13/AKR20191213106700005_01_i_P2.jpg" alt="나혼자산다 달력 2020" class="rounded" align="center">
+		</div>
+		<br><br>
+		<div>
+			<h3 style="display: inline-block;"><b>나혼자산다 2020 달력</b></h3>		
+			<p style="display: inline-block;">    가격: 6,000원 / 개</p>
+		</div>
+		<p>'나 혼자 산다'를 테마로 한 2020년 달력을 13일부터 11번가를 통해 판매한다. 달력은 올해 방송된 '나 혼자 산다' 무지개 회원들의 다양한 에피소드 중 시청자들의 큰 사랑을 받았던 장면들을 활용해 제작됐다. 탁상용과 벽걸이용 총 2종이며 오는 16일부터 차례로 배송된다. 수익금은 전액 기부한다.</p><br>
+
+		<h3><b>주문하기</b></h3>
+
+		<form>
+			<div class="form-group col-md-10 row">
+				<label for="inputName" class="col-sm-2 col-form-label">성함: </label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" id="inputName" placeholder="">
+				</div>
+			</div>
+			<div class="form-group col-md-10 row">
+				<label for="inputCount" class="col-sm-2 col-form-label">수량: </label>
+				<div class="col-sm-10">
+					<select id="inputCount" class="form-control">
+						<option selected>개수를 선택하세요</option>
+						<option>1</option>
+						<option>2</option>
+						<option>3</option>
+						<option>4</option>
+						<option>5</option>
+					</select>
+				</div>
+			</div>
+			<div class="form-group col-md-10 row">
+				<label for="inputAddress" class="col-sm-2 col-form-label">주소: </label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" id="inputAddress" placeholder="">
+				</div>
+			</div>
+			<div class="form-group col-md-10 row">
+				<label for="inputPhonenumber" class="col-sm-2 col-form-label">연락처: </label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" id="inputPhonenumber" placeholder="">
+				</div>
+			</div>
+		</form>
+
+		<br><button onclick="validCheck()" type="button" class="btn btn-primary btn-lg btn-block">주문하기</button><br><br><br>
+
+		<h3><b><주문현황></b></h3>
+
+		<table class="table">
+			<thead>
+				<tr>
+					<th scope="col">#</th>
+					<th scope="col">성함</th>
+					<th scope="col">수량</th>
+					<th scope="col">주소</th>
+					<th scope="col">연락처</th>
+				</tr>
+			</thead>
+			<tbody id="orderList">
+<!-- 		<tr>
+				<th scope="row">1</th>
+				<td>Mark</td>
+				<td>Otto</td>
+				<td>@mdo</td>
+				<td>@mdo</td>
+			</tr> -->
+		</tbody>
+	</table><br><br>
+</div>
+
+</body>
+</html>
